@@ -17,5 +17,8 @@ public class DocumentResponse {
     UUID id;
 
     @NonNull
+    String author;
+
+    @NonNull
     String content;
 }

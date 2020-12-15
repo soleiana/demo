@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;import org.springframework.security.web.FilterInvocation;
 
 import java.util.List;
 
@@ -62,9 +62,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
+    public AccessDecisionVoter<Object> roleVoter() {
+        return new RoleVoter();
+    }
+
+    @Bean
+    public AccessDecisionVoter<Object> authenticatedVoter() {
+        return new AuthenticatedVoter();
+    }
+
+    @Bean
+    public AccessDecisionVoter<FilterInvocation> opaVoter() {
+        return new OpaVoter();
+    }
+
+    @Bean
     public AccessDecisionManager accessDecisionManager() {
         List<AccessDecisionVoter<?>> decisionVoters = List.of(
-                new RoleVoter(), new AuthenticatedVoter(), new OpaVoter()
+               roleVoter(), authenticatedVoter(), opaVoter()
         );
         return new UnanimousBased(decisionVoters);
     }

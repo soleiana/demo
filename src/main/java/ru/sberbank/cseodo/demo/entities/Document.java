@@ -21,5 +21,10 @@ public class Document {
     UUID id;
 
     @NotBlank
+    String author;
+
+    boolean secret;
+
+    @NotBlank
     String content;
 }

@@ -20,7 +20,7 @@ import java.util.UUID;
 @RequestMapping("demo")
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class DemoController {
+public class DocumentController {
 
     DocumentService documentService;
 
@@ -38,6 +38,7 @@ public class DemoController {
         val document = documentService.getDocument(id);
         return DocumentResponse.builder()
                 .id(document.getId())
+                .author(document.getAuthor())
                 .content(document.getContent())
                 .build();
     }

@@ -1,15 +1,16 @@
-package authz
+package rbac
 
-default allow = false
+default allow_method = false
 
-allow {
-  input.name == "alice"
+allow_method {
+  names := {"alice", "bob"}
+  names[input.name] #check if name is in set
   input.method == "POST"
   input.path = ["document"]
   input.authorities[_] == "ROLE_WRITER"
 }
 
-allow {
+allow_method {
   input.method == "GET"
   input.path = ["document", _]
   input.authorities[_] == "ROLE_READER"

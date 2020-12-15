@@ -14,5 +14,10 @@ import javax.validation.constraints.NotBlank;
 public class CreateDocumentRequest {
 
     @NotBlank
+    String author;
+
+    boolean secret;
+
+    @NotBlank
     String content;
 }
