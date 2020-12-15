@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CreateDocumentRequest {
+public class CreateDocumentDTO {
 
     @NotBlank
     String author;

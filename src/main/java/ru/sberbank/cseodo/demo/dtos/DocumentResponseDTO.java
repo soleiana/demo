@@ -11,7 +11,7 @@ import java.util.UUID;
 @Data
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DocumentResponse {
+public class DocumentResponseDTO {
 
     @NonNull
     UUID id;

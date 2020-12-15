@@ -11,7 +11,21 @@ allow_method {
 }
 
 allow_method {
+  names := {"alice", "bob"}
+  names[input.name]
+  input.method == "POST"
+  input.path = ["documents"]
+  input.authorities[_] == "ROLE_WRITER"
+}
+
+allow_method {
   input.method == "GET"
   input.path = ["document", _]
+  input.authorities[_] == "ROLE_READER"
+}
+
+allow_method {
+  input.method == "GET"
+  input.path = ["documents"]
   input.authorities[_] == "ROLE_READER"
 }
